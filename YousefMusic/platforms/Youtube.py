@@ -221,7 +221,7 @@ class YouTubeAPI:
         loop = asyncio.get_running_loop()
 
         def base_opts():
-    opt = {
+            opt = {
         "geo_bypass": True,
         "nocheckcertificate": True,
         "quiet": True,
