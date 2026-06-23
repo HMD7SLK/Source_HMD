@@ -1,6 +1,5 @@
 aiofiles
 aiohttp
-asyncio
 beautifulsoup4
 dnspython
 ffmpeg-python
@@ -10,7 +9,6 @@ httpx[http2]
 hachoir
 heroku3
 motor==3.3.2
-motor
 pillow==9.5.0
 psutil
 py-tgcalls==0.9.7
@@ -22,7 +20,6 @@ SafoneAPI==1.0.65
 speedtest-cli
 spotipy
 tgcrypto
-speedtest-cli
 unidecode
 urllib3
 wget
@@ -30,5 +27,5 @@ yt-dlp
 youtube-search
 youtube-search-python
 pyyaml
-git+https://github.com/KurimuzonAkuma/pyrogram@dev
+git+https://github.com/KurimuzonAkuma/pyrogram
 pyromod
