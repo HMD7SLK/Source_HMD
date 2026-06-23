@@ -2,12 +2,32 @@ import yt_dlp
 import asyncio
 import os
 
+
 class YouTubeAPI:
 
     def __init__(self):
         self.base = "https://www.youtube.com/watch?v="
 
-    # 🔍 بحث يوتيوب (بديل VideosSearch)
+    async def url(self, message):
+        try:
+            if len(message.command) < 2:
+                return None
+
+            query = " ".join(message.command[1:])
+
+            if query.startswith("http://") or query.startswith("https://"):
+                return query
+
+            result = await self.search(query)
+
+            if result:
+                return result["url"]
+
+            return None
+        except Exception:
+            return None
+
+    # 🔍 بحث يوتيوب
     async def search(self, query: str):
         loop = asyncio.get_event_loop()
 
@@ -32,7 +52,7 @@ class YouTubeAPI:
 
         return await loop.run_in_executor(None, run)
 
-    # 🎧 جلب رابط الصوت
+    # 🎧 رابط الصوت
     async def stream_url(self, url: str):
         loop = asyncio.get_event_loop()
 
@@ -49,7 +69,7 @@ class YouTubeAPI:
 
         return await loop.run_in_executor(None, run)
 
-    # 🎬 جلب معلومات فيديو مباشرة
+    # 🎬 معلومات الفيديو
     async def get_info(self, url: str):
         loop = asyncio.get_event_loop()
 
