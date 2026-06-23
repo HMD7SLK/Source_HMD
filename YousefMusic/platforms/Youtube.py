@@ -98,6 +98,30 @@ class YouTubeAPI:
         self.regex = r"(?:youtube\.com|youtu\.be)"
         self.listbase = "https://youtube.com/playlist?list="
 
+    async def url(self, message):
+        try:
+            if not getattr(message, "text", None):
+                return None
+
+            if len(message.command) < 2:
+                return None
+
+            query = " ".join(message.command[1:]).strip()
+
+            if query.startswith(("http://", "https://")):
+                return query
+
+            results = VideosSearch(query, limit=1)
+            data = await results.next()
+
+            if not data.get("result"):
+                return None
+
+            return data["result"][0]["link"]
+
+        except Exception:
+            return None
+
     # -------------------------
     async def exists(self, link, videoid=None):
         if videoid:
