@@ -233,11 +233,15 @@ class YouTubeAPI:
         }
     }
 
-    cookie = cookie_txt_file()
-    if cookie:
-        opt["cookiefile"] = cookie
-
+    def base_opts():
+    ...
     return opt
+
+cookie = cookie_txt_file()
+if cookie:
+    opt["cookiefile"] = cookie
+
+return opt
 
             cookie = cookie_txt_file()
             if cookie:
