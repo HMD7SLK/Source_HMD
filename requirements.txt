@@ -5,7 +5,10 @@ dnspython
 ffmpeg-python
 future==0.18.3
 gitpython
-httpx[http2]
+
+httpx==0.24.1
+httpx[http2]==0.24.1
+
 hachoir
 heroku3
 motor==3.3.2
@@ -27,5 +30,6 @@ yt-dlp
 youtube-search
 youtube-search-python
 pyyaml
-git+https://github.com/KurimuzonAkuma/pyrogram
+
+git+https://github.com/KurimuzonAkuma/pyrogram@dev
 pyromod
