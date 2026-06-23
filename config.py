@@ -8,34 +8,36 @@ super_sudoers = [6094238403]
 
 load_dotenv()
 
-# 𝐃𝐞𝐩𝐥𝐨𝐲𝐞𝐝 ⛥ 𓏺 Yousef .tele_https://t.me/y_o_v
 API_ID = int(getenv("API_ID", 21769847))
 API_HASH = getenv("API_HASH", "d5031334164f12ef47a7f3c7c3116207")
 
-# 𝐃𝐞𝐩𝐥𝐨𝐲𝐞𝐝 ⛥ 𓏺 Yousef .tele_https://t.me/y_o_v
 BOT_TOKEN = getenv("BOT_TOKEN")
-BOT_NAME = getenv("BOT_NAME","")
+BOT_NAME = getenv("BOT_NAME", "")
 
-
-# 𝐃𝐞𝐩𝐥𝐨𝐲𝐞𝐝 ⛥ 𓏺 Yousef .tele_https://t.me/y_o_v
-MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://toxi:toxiiiic1234@atlascluster.dk5l1pm.mongodb.net/?retryWrites=true&w=majority")
+MONGO_DB_URI = getenv(
+    "MONGO_DB_URI",
+    "mongodb+srv://toxi:toxiiiic1234@atlascluster.dk5l1pm.mongodb.net/?retryWrites=true&w=majority",
+)
 
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 2000))
 
-# 𝐃𝐞𝐩𝐥𝐨𝐲𝐞𝐝 ⛥ 𓏺 Yousef .tele_https://t.me/y_o_v
-LOGGER_ID = int(getenv("OWNER_ID","1872738364"))
+# ===== عدل هذا الجزء =====
 
-# Get this value from @FallenxBot on Telegram by /id
-OWNER_ID = int(getenv("OWNER_ID", 6094238403))
-# 𝐃𝐞𝐩𝐥𝐨𝐲𝐞𝐝 ⛥ 𓏺 Yousef .tele_https://t.me/y_o_v
-YAFA_CHANNEL = getenv("YAFA_CHANNEL", "https://t.me/L_K_VV")
-YAFA_NAME = getenv("YAFA_NAME", "• اضغط هنا للاشتراك •")#لاتبعصها
-CHANNEL_SUDO = getenv("CHANNEL_SUDO", "cecrr")# Fill # Fill this variable if your upstream repository is private
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/B_a_r/10119")#قناة السورس
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/L_K_VV")
+LOGGER_ID = int(getenv("LOGGER_ID", "-1004356471881"))
+
+OWNER_ID = int(getenv("OWNER_ID", "8282175722"))
+
+# =========================
+
+YAFA_CHANNEL = getenv("YAFA_CHANNEL", "https://t.me/QQHMDQ")
+YAFA_NAME = getenv("YAFA_NAME", "• اضغط هنا للاشتراك •")
+
+CHANNEL_SUDO = getenv("CHANNEL_SUDO", "QQHMDQ")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/Q_0_R")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/Q_0_R")
 CHANNEL_NAME = getenv("CHANNEL_NAME", "كِتابات خَارج السرب")
 CHANNEL_LINK = getenv("CHANNEL_LINK", "cecrr")
-OWNER_CHANNEL = getenv("OWNER_CHANNEL", "https://t.me/L_K_VV")
+OWNER_CHANNEL = getenv("OWNER_CHANNEL", "https://t.me/Q_0_R")
 
 
 FAILED = "https://graph.org/file/cd2bf6082397483175f17.jpg"
