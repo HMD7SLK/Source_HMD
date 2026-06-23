@@ -233,15 +233,18 @@ class YouTubeAPI:
         }
     }
 
-    def base_opts():
-    ...
-    return opt
-
-cookie = cookie_txt_file()
-if cookie:
-    opt["cookiefile"] = cookie
-
-return opt
+        def base_opts():
+            opt = {
+                "geo_bypass": True,
+                "nocheckcertificate": True,
+                "quiet": True,
+                "no_warnings": True,
+                "extractor_args": {
+                    "youtube": {
+                        "player_client": ["android"]
+                    }
+                }
+            }
 
             cookie = cookie_txt_file()
             if cookie:
