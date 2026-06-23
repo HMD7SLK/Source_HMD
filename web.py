@@ -1,10 +1,11 @@
-from aiohttp import web
-import os
+import asyncio
+from YousefMusic import app
+from YousefMusic.core.call import Zoro
 
-async def home(request):
-    return web.Response(text="Bot is running")
+async def main():
+    await app.start()
+    await Zoro.start()
+    print("Bot is running...")
+    await asyncio.Event().wait()
 
-app = web.Application()
-app.router.add_get("/", home)
-
-web.run_app(app, host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
+asyncio.run(main())
