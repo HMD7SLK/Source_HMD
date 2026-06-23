@@ -8,8 +8,8 @@ super_sudoers = [6094238403]
 
 load_dotenv()
 
-API_ID = int(getenv("API_ID", 21769847))
-API_HASH = getenv("API_HASH", "d5031334164f12ef47a7f3c7c3116207")
+API_ID = int(getenv("API_ID", 37718149))
+API_HASH = getenv("API_HASH", "aa15df4d0ddaa70a3c109ed6cdb12277")
 
 BOT_TOKEN = getenv("BOT_TOKEN")
 BOT_NAME = getenv("BOT_NAME", "")
