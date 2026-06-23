@@ -14,7 +14,7 @@ motor==3.3.2
 pillow==10.2.0
 psutil
 
-py-tgcalls==2.3.3
+py-tgcalls==2.2.7
 
 pykeyboard
 pymongo==4.6.3
