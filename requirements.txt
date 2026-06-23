@@ -31,8 +31,8 @@ unidecode
 urllib3
 wget
 yt-dlp
-youtube-search
 
+youtube-search
 pyyaml
 
 git+https://github.com/KurimuzonAkuma/pyrogram@dev
