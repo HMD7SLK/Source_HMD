@@ -1,8 +1,8 @@
 import asyncio
 import importlib
+import logging
 
 from pyrogram import idle
-from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
 from YousefMusic import LOGGER, app, userbot
@@ -12,9 +12,10 @@ from YousefMusic.plugins import ALL_MODULES
 from YousefMusic.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
 
-# 𝐃𝐞𝐩𝐥𝐨𝐲𝐞𝐝 ⛥ 𓏺 Yousef .tele_https://t.me/y_o_v
+logging.basicConfig(level=logging.INFO)
 
 async def init():
+
     if (
         not config.STRING1
         and not config.STRING2
@@ -22,33 +23,48 @@ async def init():
         and not config.STRING4
         and not config.STRING5
     ):
-        LOGGER(__name__).error("كود جلسة الحساب المساعد غير مدعوم ...")
-        exit()
+        LOGGER(__name__).error("كود جلسة الحساب المساعد غير موجود")
+        return
+
     await sudo()
+
     try:
         users = await get_gbanned()
         for user_id in users:
             BANNED_USERS.add(user_id)
+
         users = await get_banned_users()
         for user_id in users:
             BANNED_USERS.add(user_id)
-    except:
-        pass
+
+    except Exception as e:
+        print("DB ERROR:", e)
+
     await app.start()
+
     for all_module in ALL_MODULES:
         importlib.import_module("YousefMusic.plugins" + all_module)
-    LOGGER("ميــوزك بحر").info("تم تحميل الاضافات ...✓")
-    await userbot.start()
-    await Zoro.start()
 
-    await Zoro.decorators()
-    LOGGER("ميــوزك بحر").info("──██████──────██████───█████████████──────██████████████───████████████████─────────\n──██──██──────██──██───██─────────██────██────────────██───██────────────██─────────\n──██──██──────██──██───██──█████████───██───████████████───██───███████──██─────────\n──██──██──────██──██───██──██──────────██──██──────────────██───██───██──██─────────\n──██──██──────██──██───██──█▉──────────██──██──────────────██───██───██──██─────────\n──██──██──────██──██───██──██──────────██──██──────────────██───██───██──██─────────\n──██──██──────██──█▉───██──██──────────██──██──────────────██───██───██──██─────────\n──██──██──────██──██───██──█████████───██──█▉───███████────██───███████──██─────────\n──██───██────██───██───██─────────██───██──██───██────██───██────────────██─────────\n───██───██──██───██────██──█████████───██──██───████──██───██───███████──██─────────\n────██───████───██─────██──██──────────██──██─────██──██───██───██───██──██─────────\n─────██───██───██──────██──██──────────██───██────██──██───██───██───██──██─────────\n──────██──────██───────██──██───────────██───██───██──██───██───██───██──██─────────\n───────██────██────────██──█████████─────██──███████──██───██───██───██──██─────────\n────────██──██─────────██─────────█▉──────██──────────██───██───██───██──██─────────\n─────────████──────────█████████████───────████████████────███████───██████─────────")
+    LOGGER("YousefMusic").info("تم تحميل الإضافات ✓")
+
+    try:
+        await userbot.start()
+        await Zoro.start()
+        await Zoro.decorators()
+
+    except Exception as e:
+        print("START ERROR:", e)
+
     await idle()
-    await app.stop()
-    await userbot.stop()
-    LOGGER("ميــوزك بحر").info("جارِ ايقاف بوت الميوزك . . .")
-    await userbot.start()
-    await azkar()
+
+    LOGGER("YousefMusic").info("جاري إيقاف البوت...")
+
+    try:
+        await app.stop()
+        await userbot.stop()
+    except Exception as e:
+        print("STOP ERROR:", e)
+
 
 if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(init())
