@@ -231,17 +231,17 @@ class YouTubeAPI:
         loop = asyncio.get_running_loop()
 
         def base_opts():
-            opt = {
-                "geo_bypass": True,
-                "nocheckcertificate": True,
-                "quiet": True,
-                "no_warnings": True,
-                "extractor_args": {
-                    "youtube": {
-                        "player_client": ["android"]
-                    }
-                }
+            return {
+        "format": "bestaudio/best",
+        "quiet": True,
+        "no_warnings": True,
+        "geo_bypass": True,
+        "extractor_args": {
+            "youtube": {
+                "player_client": ["android"]
             }
+        }
+    }
 
             cookie = cookie_txt_file()
             if cookie:
