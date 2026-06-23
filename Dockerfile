@@ -1,7 +1,7 @@
 FROM python:3.10-bullseye
 
 RUN apt-get update && \
-    apt-get install -y ffmpeg git curl && \
+    apt-get install -y ffmpeg git curl nodejs npm && \
     apt-get clean
 
 COPY . /app
