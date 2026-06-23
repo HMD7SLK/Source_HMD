@@ -42,7 +42,7 @@ OWNER = 8282175722
 @app.on_message(filters.command(["مطور السورس", "• مطور السورس •","حمد"], ""))
 async def dev(client: Client, message: Message):
      bot_username = client.me.username
-     user = await client.get_chat(8282175722)
+     user = await client.get_chat(Q_0_R)
      name = user.first_name
      username = user.username 
      bio = user.bio
