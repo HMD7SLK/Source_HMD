@@ -1,6 +1,7 @@
 import asyncio
 import importlib
 import logging
+import traceback
 
 from pyrogram import idle
 
@@ -13,6 +14,7 @@ from YousefMusic.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
 
 logging.basicConfig(level=logging.INFO)
+
 
 async def init():
 
@@ -39,6 +41,7 @@ async def init():
 
     except Exception as e:
         print("DB ERROR:", e)
+        traceback.print_exc()
 
     await app.start()
 
@@ -54,6 +57,7 @@ async def init():
 
     except Exception as e:
         print("START ERROR:", e)
+        traceback.print_exc()
 
     await idle()
 
@@ -62,8 +66,10 @@ async def init():
     try:
         await app.stop()
         await userbot.stop()
+
     except Exception as e:
         print("STOP ERROR:", e)
+        traceback.print_exc()
 
 
 if __name__ == "__main__":
