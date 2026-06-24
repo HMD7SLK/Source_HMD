@@ -1,15 +1,12 @@
-FROM python:3.10.13-slim
-
-RUN apt-get update && apt-get install -y \
-    ffmpeg git curl \
-    build-essential \
-    libjpeg-dev zlib1g-dev libpng-dev \
-    && apt-get clean
+FROM python:3.10
 
 WORKDIR /app
-COPY . /app
 
-RUN pip install --upgrade pip setuptools wheel
-RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
 
-CMD ["python3", "-m", "YousefMusic"]
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+ENV PORT=10000
+
+CMD ["python", "main.py"]
