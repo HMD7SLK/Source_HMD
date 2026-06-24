@@ -48,7 +48,7 @@ async def init():
     await app.start()
 
     for all_module in ALL_MODULES:
-        importlib.import_module("YousefMusic.plugins" + all_module)
+        importlib.import_module("YousefMusic.plugins." + all_module)
 
     LOGGER("YousefMusic").info("تم تحميل الإضافات ✓")
 
@@ -69,4 +69,12 @@ async def init():
 
     try:
         await app.stop()
-        await
+        await userbot.stop()
+
+    except Exception as e:
+        print("STOP ERROR:", e)
+        traceback.print_exc()
+
+
+if __name__ == "__main__":
+    asyncio.get_event_loop().run_until_complete(init())
