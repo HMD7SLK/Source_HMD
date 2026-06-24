@@ -39,3 +39,4 @@ pyyaml
 
 git+https://github.com/KurimuzonAkuma/pyrogram@dev
 pyromod
+flask
