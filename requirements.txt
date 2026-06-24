@@ -24,7 +24,6 @@ pymongo==4.6.3
 
 python-dotenv
 requests
-SafoneAPI==1.0.65
 speedtest-cli
 spotipy
 tgcrypto
