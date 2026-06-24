@@ -39,22 +39,16 @@ class Zoro(Client):
             )
 
         except (errors.ChannelInvalid, errors.PeerIdInvalid) as ex:
-            print(f"LOGGER ERROR => {ex}")
-            LOGGER(__name__).error(
-                f"ChannelInvalid / PeerIdInvalid : {ex}"
+            print(f"LOGGER WARNING => {ex}")
+            LOGGER(__name__).warning(
+                f"Logger group not accessible: {ex}"
             )
-            raise ex
 
         except Exception as ex:
-            import traceback
-
-            print(f"LOGGER ERROR => {ex}")
-            traceback.print_exc()
-
-            LOGGER(__name__).error(
-                f"Bot has failed to access the log group/channel.\nReason: {ex}"
+            print(f"LOGGER WARNING => {ex}")
+            LOGGER(__name__).warning(
+                f"Bot can't access LOGGER_ID: {ex}"
             )
-            raise ex
 
         LOGGER("ميــوزك بحر").info(
             f"تم بدء تشغيل البوت {self.name} ...✓"
