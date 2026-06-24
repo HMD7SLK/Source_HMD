@@ -1,3 +1,6 @@
+import glob
+from os.path import dirname, isfile
+
 def __list_all_modules():
     work_dir = dirname(__file__)
     mod_paths = glob.glob(work_dir + "/*/*.py")
@@ -5,6 +8,9 @@ def __list_all_modules():
     all_modules = []
 
     for f in mod_paths:
+        if not isfile(f):
+            continue
+
         if f.endswith("__init__.py"):
             continue
 
@@ -20,3 +26,8 @@ def __list_all_modules():
             all_modules.append(module)
 
     return all_modules
+
+
+ALL_MODULES = sorted(__list_all_modules())
+
+__all__ = ALL_MODULES + ["ALL_MODULES"]
