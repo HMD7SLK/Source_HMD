@@ -5,11 +5,18 @@ def __list_all_modules():
     all_modules = []
 
     for f in mod_paths:
-        if isfile(f) and f.endswith(".py") and not f.endswith("__init__.py"):
-            module = f.replace(work_dir, "").replace("/", ".").strip(".")
+        if f.endswith("__init__.py"):
+            continue
+
+        if not f.endswith(".py"):
+            continue
+
+        module = f.replace(work_dir, "").replace("/", ".").strip(".")
+
+        if module.endswith(".py"):
             module = module[:-3]
 
-            if module:
-                all_modules.append(module)
+        if module:
+            all_modules.append(module)
 
     return all_modules
