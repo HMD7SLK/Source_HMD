@@ -33,11 +33,11 @@ YAFA_CHANNEL = getenv("YAFA_CHANNEL", "https://t.me/QQHMDQ")
 YAFA_NAME = getenv("YAFA_NAME", "• اضغط هنا للاشتراك •")
 
 CHANNEL_SUDO = getenv("CHANNEL_SUDO", "QQHMDQ")
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/Q_0_R")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/Q_0_R")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/QQHMDQ")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/HSJKAKSKN")
 CHANNEL_NAME = getenv("CHANNEL_NAME", "كِتابات خَارج السرب")
 CHANNEL_LINK = getenv("CHANNEL_LINK", "cecrr")
-OWNER_CHANNEL = getenv("OWNER_CHANNEL", "https://t.me/Q_0_R")
+OWNER_CHANNEL = getenv("OWNER_CHANNEL", "https://t.me/QQHMDQ")
 
 
 FAILED = "https://graph.org/file/cd2bf6082397483175f17.jpg"
