@@ -4,7 +4,13 @@ WORKDIR /app
 
 COPY . .
 
-RUN apt-get update && apt-get install -y ffmpeg
+RUN apt-get update && apt-get install -y 
+ffmpeg 
+nodejs 
+npm
+
+RUN node -v
+
 RUN pip install --no-cache-dir -r requirements.txt
 
 ENV PORT=10000
