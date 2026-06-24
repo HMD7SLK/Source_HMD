@@ -3,7 +3,7 @@ wheel==0.41.2
 pip==23.3.1
 
 aiofiles
-aiohttp
+aiohttp==3.9.5
 beautifulsoup4
 dnspython
 ffmpeg-python
@@ -37,6 +37,7 @@ youtube-search-python
 
 pyyaml
 
-git+https://github.com/KurimuzonAkuma/pyrogram@dev
-pyromod
+pyrogram==2.0.106
+pyromod==1.5
+
 flask
