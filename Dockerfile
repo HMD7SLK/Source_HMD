@@ -4,9 +4,10 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN apt-get update && apt-get install -y ffmpeg
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install flask
 
 ENV PORT=10000
 
-CMD ["python", "main.py"]
+CMD sh -c "python web.py & python main.py"
