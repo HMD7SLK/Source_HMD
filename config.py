@@ -36,7 +36,7 @@ CHANNEL_SUDO = getenv("CHANNEL_SUDO", "QQHMDQ")
 SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/QQHMDQ")
 SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/HSJKAKSKN")
 CHANNEL_NAME = getenv("CHANNEL_NAME", "كِتابات خَارج السرب")
-CHANNEL_LINK = getenv("CHANNEL_LINK", "cecrr")
+CHANNEL_LINK = getenv("CHANNEL_LINK", "QQHMDQ")
 OWNER_CHANNEL = getenv("OWNER_CHANNEL", "https://t.me/QQHMDQ")
 
 
