@@ -1,25 +1,7 @@
 from pyrogram import Client
 
 import config
-
 from ..logging import LOGGER
-
-#──██████──────██████───█████████████──────██████████████───████████████████─────────
-#──██──██──────██──██───██─────────██────██────────────██───██────────────██─────────
-#──██──██──────██──██───██──█████████───██───████████████───██───███████──██─────────
-#──██──██──────██──██───██──██──────────██──██──────────────██───██───██──██─────────
-#──██──██──────██──██───██──█▉──────────██──██──────────────██───██───██──██─────────
-#──██──██──────██──██───██──██──────────██──██──────────────██───██───██──██─────────
-#──██──██──────██──█▉───██──██──────────██──██──────────────██───██───██──██─────────
-#──██──██──────██──██───██──█████████───██──█▉───███████────██───███████──██─────────
-#──██───██────██───██───██─────────██───██──██───██────██───██────────────██─────────
-#───██───██──██───██────██──█████████───██──██───████──██───██───███████──██─────────
-#────██───████───██─────██──██──────────██──██─────██──██───██───██───██──██─────────
-#─────██───██───██──────██──██──────────██───██────██──██───██───██───██──██─────────
-#──────██──────██───────██──██───────────██───██───██──██───██───██───██──██─────────
-#───────██────██────────██──█████████─────██──███████──██───██───██───██──██─────────
-#────────██──██─────────██─────────█▉──────██──────────██───██───██───██──██─────────
-#─────────████──────────█████████████───────████████████────███████───██████─────────
 
 assistants = []
 assistantids = []
@@ -34,6 +16,7 @@ class Userbot(Client):
             session_string=str(config.STRING1),
             no_updates=True,
         )
+
         self.two = Client(
             name="VeGaOAss2",
             api_id=config.API_ID,
@@ -41,6 +24,7 @@ class Userbot(Client):
             session_string=str(config.STRING2),
             no_updates=True,
         )
+
         self.three = Client(
             name="VeGaOAss3",
             api_id=config.API_ID,
@@ -48,6 +32,7 @@ class Userbot(Client):
             session_string=str(config.STRING3),
             no_updates=True,
         )
+
         self.four = Client(
             name="VeGaOAss4",
             api_id=config.API_ID,
@@ -55,6 +40,7 @@ class Userbot(Client):
             session_string=str(config.STRING4),
             no_updates=True,
         )
+
         self.five = Client(
             name="MatrixAss5",
             api_id=config.API_ID,
@@ -64,123 +50,140 @@ class Userbot(Client):
         )
 
     async def start(self):
-        LOGGER("ميــوزك بحر").info(f"جارِ تشغيل الحساب المساعد . . .")
+        LOGGER("ميــوزك بحر").info("جارِ تشغيل الحسابات المساعدة . . .")
+
+        # Assistant 1
         if config.STRING1:
-            await self.one.start()
             try:
-                await self.one.join_chat("cecrr")
-                await self.one.join_chat("b_a_r")
-            except:
-                pass
-            assistants.append(1)
-            get_me = await self.one.get_me()
-            self.one.username = get_me.username
-            self.one.id = get_me.id
-            assistantids.append(get_me.id)
-            if get_me.last_name:
-                self.one.name = (
-                    get_me.first_name + " " + get_me.last_name
-                )
-            else:
-                self.one.name = get_me.first_name
-            LOGGER("ميــوزك بحر").info(f"تم بدء تشغيل الحساب المساعد {self.one.name} ...✓")
+                await self.one.start()
 
+                assistants.append(1)
+
+                me = await self.one.get_me()
+
+                self.one.id = me.id
+                self.one.username = me.username
+
+                if me.last_name:
+                    self.one.name = f"{me.first_name} {me.last_name}"
+                else:
+                    self.one.name = me.first_name
+
+                assistantids.append(me.id)
+
+                LOGGER("ميــوزك بحر").info(
+                    f"تم تشغيل الحساب المساعد الأول: {self.one.name}"
+                )
+
+            except Exception as e:
+                LOGGER(__name__).error(f"Assistant 1 Error: {e}")
+
+        # Assistant 2
         if config.STRING2:
-            await self.two.start()
             try:
-                await self.one.join_chat("cecrr")
-                await self.one.join_chat("b_a_r")
-            except:
-                pass
-            assistants.append(2)
-            try:
-                await self.two.send_message(config.LOGGER_ID, "» تم تشغيـل الحسـاب المسـاعـد² .. بنجـاح ✅")
-            except:
-                LOGGER(__name__).error(
-                    "Assistant Account 2 has failed to access the log Group. Make sure that you have added your assistant to your log group and promoted as admin!"
-                )
-                exit()
-            self.two.id = self.two.me.id
-            self.two.name = self.two.me.mention
-            self.two.username = self.two.me.username
-            assistantids.append(self.two.id)
-            LOGGER("ميــوزك بحر").info(f"Assistant Two Started as {self.two.name}")
+                await self.two.start()
 
+                assistants.append(2)
+
+                me = await self.two.get_me()
+
+                self.two.id = me.id
+                self.two.username = me.username
+                self.two.name = me.first_name
+
+                assistantids.append(me.id)
+
+                LOGGER("ميــوزك بحر").info(
+                    f"تم تشغيل الحساب المساعد الثاني: {self.two.name}"
+                )
+
+            except Exception as e:
+                LOGGER(__name__).error(f"Assistant 2 Error: {e}")
+
+        # Assistant 3
         if config.STRING3:
-            await self.three.start()
             try:
-                await self.one.join_chat("cecrr")
-                await self.one.join_chat("b_a_r")
-            except:
-                pass
-            assistants.append(3)
-            try:
-                await self.three.send_message(config.LOGGER_ID, "» تم تشغيـل الحسـاب المسـاعـد³ .. بنجـاح ✅")
-            except:
-                LOGGER(__name__).error(
-                    "Assistant Account 3 has failed to access the log Group. Make sure that you have added your assistant to your log group and promoted as admin! "
-                )
-                exit()
-            self.three.id = self.three.me.id
-            self.three.name = self.three.me.mention
-            self.three.username = self.three.me.username
-            assistantids.append(self.three.id)
-            LOGGER("ميــوزك بحر").info(f"Assistant Three Started as {self.three.name}")
+                await self.three.start()
 
+                assistants.append(3)
+
+                me = await self.three.get_me()
+
+                self.three.id = me.id
+                self.three.username = me.username
+                self.three.name = me.first_name
+
+                assistantids.append(me.id)
+
+                LOGGER("ميــوزك بحر").info(
+                    f"تم تشغيل الحساب المساعد الثالث: {self.three.name}"
+                )
+
+            except Exception as e:
+                LOGGER(__name__).error(f"Assistant 3 Error: {e}")
+
+        # Assistant 4
         if config.STRING4:
-            await self.four.start()
             try:
-                await self.one.join_chat("cecrr")
-                await self.one.join_chat("b_a_r")
-            except:
-                pass
-            assistants.append(4)
-            try:
-                await self.four.send_message(config.LOGGER_ID, "» تم تشغيـل الحسـاب المسـاعـد⁴ .. بنجـاح ✅")
-            except:
-                LOGGER(__name__).error(
-                    "Assistant Account 4 has failed to access the log Group. Make sure that you have added your assistant to your log group and promoted as admin! "
-                )
-                exit()
-            self.four.id = self.four.me.id
-            self.four.name = self.four.me.mention
-            self.four.username = self.four.me.username
-            assistantids.append(self.four.id)
-            LOGGER("ميــوزك بحر").info(f"Assistant Four Started as {self.four.name}")
+                await self.four.start()
 
-        if config.STRING5:
-            await self.five.start()
-            try:
-                await self.one.join_chat("cecrr")
-                await self.one.join_chat("b_a_r")
-            except:
-                pass
-            assistants.append(5)
-            try:
-                await self.five.send_message(config.LOGGER_ID, "» تم تشغيـل الحسـاب المسـاعـد⅝ .. بنجـاح ✅")
-            except:
-                LOGGER(__name__).error(
-                    "Assistant Account 5 has failed to access the log Group. Make sure that you have added your assistant to your log group and promoted as admin! "
+                assistants.append(4)
+
+                me = await self.four.get_me()
+
+                self.four.id = me.id
+                self.four.username = me.username
+                self.four.name = me.first_name
+
+                assistantids.append(me.id)
+
+                LOGGER("ميــوزك بحر").info(
+                    f"تم تشغيل الحساب المساعد الرابع: {self.four.name}"
                 )
-                exit()
-            self.five.id = self.five.me.id
-            self.five.name = self.five.me.mention
-            self.five.username = self.five.me.username
-            assistantids.append(self.five.id)
-            LOGGER("ميــوزك بحر").info(f"Assistant Five Started as {self.five.name}")
+
+            except Exception as e:
+                LOGGER(__name__).error(f"Assistant 4 Error: {e}")
+
+        # Assistant 5
+        if config.STRING5:
+            try:
+                await self.five.start()
+
+                assistants.append(5)
+
+                me = await self.five.get_me()
+
+                self.five.id = me.id
+                self.five.username = me.username
+                self.five.name = me.first_name
+
+                assistantids.append(me.id)
+
+                LOGGER("ميــوزك بحر").info(
+                    f"تم تشغيل الحساب المساعد الخامس: {self.five.name}"
+                )
+
+            except Exception as e:
+                LOGGER(__name__).error(f"Assistant 5 Error: {e}")
 
     async def stop(self):
-        LOGGER("ميــوزك بحر").info(f"Stopping Assistants...")
+        LOGGER("ميــوزك بحر").info("Stopping Assistants...")
+
         try:
             if config.STRING1:
                 await self.one.stop()
+
             if config.STRING2:
                 await self.two.stop()
+
             if config.STRING3:
                 await self.three.stop()
+
             if config.STRING4:
                 await self.four.stop()
+
             if config.STRING5:
                 await self.five.stop()
-        except:
+
+        except Exception:
             pass
