@@ -1,12 +1,11 @@
-import asyncio
-from YousefMusic import app
-from YousefMusic.core.call import Zoro
+from flask import Flask
+import os
 
-async def main():
-    await app.start()
-    await Zoro.start()
-    print("Bot is running...")
-    await asyncio.Event().wait()
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Bot is running"
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
