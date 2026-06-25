@@ -66,103 +66,26 @@ self.listbase = "https://youtube.com/playlist?list="
 async def exists(self, url):
     return True
 
-    async def url(self, message):
-        try:
-            if not getattr(message, "text", None):
-                return None
-
-            if len(message.command) < 2:
-                return None
-
-            query = " ".join(message.command[1:]).strip()
-
-            if query.startswith(("http://", "https://")):
-                return query
-
-            results = VideosSearch(query, limit=1)
-            data = await results.next()
-
-            if not data.get("result"):
-                return None
-
-            return data["result"][0]["link"]
-
-        except:
+async def url(self, message):
+    try:
+        if not getattr(message, "text", None):
             return None
 
-    # -------------------------
-    async def video(self, link, videoid=None):
-        if videoid:
-            link = self.base + link
+        if len(message.command) < 2:
+            return None
 
-        cmd = [
-            "yt-dlp",
-            "--cookies", cookie_txt_file() if cookie_txt_file() else "",
-            "-g",
-            "-f",
-            "best[height<=720]",
-            link
-        ]
+        query = " ".join(message.command[1:]).strip()
 
-        if "" in cmd:
-            cmd.remove("")
+        if query.startswith(("http://", "https://")):
+            return query
 
-        proc = await asyncio.create_subprocess_exec(
-            *cmd,
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
-        )
+        results = VideosSearch(query, limit=1)
+        data = await results.next()
 
-        stdout, stderr = await proc.communicate()
+        if not data.get("result"):
+            return None
 
-        if stdout:
-            return 1, stdout.decode().split("\n")[0]
+        return data["result"][0]["link"]
 
-        return 0, stderr.decode()
-
-    # -------------------------
-    async def download(self, link, video=None, songaudio=None, songvideo=None, videoid=None):
-        if videoid:
-            link = self.base + link
-
-        loop = asyncio.get_running_loop()
-
-        def audio_dl():
-            opts = base_opts()
-            opts.update({
-                "format": "bestaudio/best",
-                "outtmpl": "downloads/%(id)s.%(ext)s",
-            })
-
-            ydl = yt_dlp.YoutubeDL(opts)
-            info = ydl.extract_info(link, False)
-            path = f"downloads/{info['id']}.{info['ext']}"
-
-            if not os.path.exists(path):
-                ydl.download([link])
-
-            return path
-
-        def video_dl():
-            opts = base_opts()
-            opts.update({
-                "format": "best[height<=720]",
-                "outtmpl": "downloads/%(id)s.%(ext)s",
-            })
-
-            ydl = yt_dlp.YoutubeDL(opts)
-            info = ydl.extract_info(link, False)
-            path = f"downloads/{info['id']}.{info['ext']}"
-
-            if not os.path.exists(path):
-                ydl.download([link])
-
-            return path
-
-        if songaudio:
-            return await loop.run_in_executor(None, audio_dl), True
-
-        if songvideo or video:
-            return await loop.run_in_executor(None, video_dl), True
-
-        return await loop.run_in_executor(None, audio_dl), True
+    except:
+        return None
