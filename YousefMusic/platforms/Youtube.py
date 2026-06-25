@@ -58,10 +58,13 @@ def base_opts():
 # ✔ YOUTUBE CLASS FIXED
 # -----------------------------
 class YouTubeAPI:
-    def __init__(self):
-        self.base = "https://www.youtube.com/watch?v="
-        self.regex = r"(?:youtube\.com|youtu\.be)"
-        self.listbase = "https://youtube.com/playlist?list="
+def init(self):
+self.base = "https://www.youtube.com/watch?v="
+self.regex = r"(?:youtube.com|youtu.be)"
+self.listbase = "https://youtube.com/playlist?list="
+
+async def exists(self, url):
+    return True
 
     async def url(self, message):
         try:
