@@ -58,34 +58,34 @@ def base_opts():
 # ✔ YOUTUBE CLASS FIXED
 # -----------------------------
 class YouTubeAPI:
-def init(self):
-self.base = "https://www.youtube.com/watch?v="
-self.regex = r"(?:youtube.com|youtu.be)"
-self.listbase = "https://youtube.com/playlist?list="
+    def __init__(self):
+        self.base = "https://www.youtube.com/watch?v="
+        self.regex = r"(?:youtube.com|youtu.be)"
+        self.listbase = "https://youtube.com/playlist?list="
 
-async def exists(self, url):
-    return True
+    async def exists(self, url):
+        return True
 
-async def url(self, message):
-    try:
-        if not getattr(message, "text", None):
+    async def url(self, message):
+        try:
+            if not getattr(message, "text", None):
+                return None
+
+            if len(message.command) < 2:
+                return None
+
+            query = " ".join(message.command[1:]).strip()
+
+            if query.startswith(("http://", "https://")):
+                return query
+
+            results = VideosSearch(query, limit=1)
+            data = await results.next()
+
+            if not data.get("result"):
+                return None
+
+            return data["result"][0]["link"]
+
+        except:
             return None
-
-        if len(message.command) < 2:
-            return None
-
-        query = " ".join(message.command[1:]).strip()
-
-        if query.startswith(("http://", "https://")):
-            return query
-
-        results = VideosSearch(query, limit=1)
-        data = await results.next()
-
-        if not data.get("result"):
-            return None
-
-        return data["result"][0]["link"]
-
-    except:
-        return None
